@@ -49,4 +49,18 @@ public class Utilidades {
         }
         return listap;
     }
+    
+        public static boolean coordenadasConcatenadas(LinkedList<Punto2D> coordenadas, String rutaArchivo) {
+            boolean t = false;
+                 try (PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))) {
+                    for (Punto2D punto : coordenadas) {
+                    escritor.println(punto.getX());
+            }
+            t = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return t;
+    }
 }

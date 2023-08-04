@@ -68,6 +68,7 @@ public class UIpunto extends javax.swing.JFrame  {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -171,6 +172,14 @@ public class UIpunto extends javax.swing.JFrame  {
             }
         });
         jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Concatenar X.Y");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -305,7 +314,7 @@ public class UIpunto extends javax.swing.JFrame  {
 
 
     Collections.sort(listaOrdenada, new Comparator<Punto2D>() {
-        @Override
+   
         public int compare(Punto2D punto1, Punto2D punto2) {
 
             int comparacionX = Double.compare(punto2.getX(), punto1.getX());
@@ -398,7 +407,7 @@ public class UIpunto extends javax.swing.JFrame  {
 
     
     Collections.sort(listaOrdenada, new Comparator<Punto2D>() {
-        @Override
+    
         public int compare(Punto2D punto1, Punto2D punto2) {
 
             int comparacionX = Double.compare(punto1.getX(), punto2.getX());
@@ -416,6 +425,29 @@ public class UIpunto extends javax.swing.JFrame  {
     TextAreacoordenada.setText(mostrarC(listaOrdenada));
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+      // Leer las coordenadas X e Y desde los archivos de texto
+    LinkedList<Punto2D> coordenadasX = Utilidades.leerCoordenadas("coordenadasX.txt");
+    LinkedList<Punto2D> coordenadasY = Utilidades.leerCoordenadas("coordenadasY.txt");
+
+  
+    LinkedList<Punto2D> coordenadasConcatenadas = new LinkedList<>(coordenadasX);
+    coordenadasConcatenadas.addAll(coordenadasY);
+
+   
+    TextAreacoordenada.setText(mostrarC(coordenadasConcatenadas));
+
+
+    boolean exito = Utilidades.escribirCoordenadas(coordenadasConcatenadas, "coordenadasConcatenadas.txt");
+    if (exito) {
+        JOptionPane.showMessageDialog(this, "Archivo 'coordenadasConcatenadas.txt' creado exitosamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al crear el archivo.");
+    }
+
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     public String mostrarC(LinkedList<Punto2D> l){
         String mostrarl="";
@@ -458,6 +490,7 @@ public class UIpunto extends javax.swing.JFrame  {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
