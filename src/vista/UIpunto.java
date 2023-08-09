@@ -104,6 +104,11 @@ public class UIpunto extends javax.swing.JFrame  {
         jScrollPane2.setViewportView(TextAreacoordenada);
 
         panelcoordenada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelcoordenada.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panelcoordenadaMouseMoved(evt);
+            }
+        });
         panelcoordenada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelcoordenadaMouseClicked(evt);
@@ -507,6 +512,16 @@ public class UIpunto extends javax.swing.JFrame  {
      }
      
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void panelcoordenadaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelcoordenadaMouseMoved
+        // TODO add your handling code here:
+                double coorX = evt.getX();
+                double coorY = evt.getY();
+                
+                variablex.setText("" + coorX);
+                variabley.setText("" + coorY);
+        
+    }//GEN-LAST:event_panelcoordenadaMouseMoved
 
     public String mostrarC(LinkedList<Punto2D> l){
         String mostrarl="";
