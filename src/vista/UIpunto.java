@@ -64,14 +64,16 @@ public class UIpunto extends javax.swing.JFrame  {
         mostrar = new javax.swing.JButton();
         Guardar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
 
         jTextArea1.setColumns(3);
         jTextArea1.setRows(5);
@@ -147,6 +149,42 @@ public class UIpunto extends javax.swing.JFrame  {
             }
         });
 
+        jMenu1.setText("Ordenar");
+
+        jMenuItem1.setText("Mayor a menor");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Menor a mayor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem8.setText("Ordenar X");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuItem7.setText("Ordenar Y ");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu1);
+
         jMenu2.setText("Editar");
 
         jMenuItem3.setText("Invertir");
@@ -182,26 +220,6 @@ public class UIpunto extends javax.swing.JFrame  {
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu1.setText("Ordenar");
-
-        jMenuItem1.setText("Mayor a menor");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Menor a mayor");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -449,6 +467,47 @@ public class UIpunto extends javax.swing.JFrame  {
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+     if(listaPuntos.size() <= 1)
+         return;
+     
+     for (int i = 1; i < listaPuntos.size(); i++){
+         Punto2D key = listaPuntos.get(i);
+         int j = i - 1;
+         
+         
+         while (j >= 0  && listaPuntos.get(j).getY()> key.getY()){
+             listaPuntos.set(j+1, listaPuntos.get (j));
+             j--;
+         }
+        listaPuntos.set(j + 1, key);
+        
+        TextAreacoordenada.setText(mostrarC(listaPuntos));
+     }
+     
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+       
+             if(listaPuntos.size() <= 1)
+         return;
+     
+     for (int i = 1; i < listaPuntos.size(); i++){
+         Punto2D key = listaPuntos.get(i);
+         int j = i - 1;
+         
+         
+         while (j >= 0  && listaPuntos.get(j).getX()> key.getX()){
+             listaPuntos.set(j+1, listaPuntos.get (j));
+             j--;
+         }
+        listaPuntos.set(j + 1, key);
+        
+        TextAreacoordenada.setText(mostrarC(listaPuntos));
+     }
+     
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     public String mostrarC(LinkedList<Punto2D> l){
         String mostrarl="";
         for (int i = 0; i < l.size(); i++) {
@@ -491,6 +550,8 @@ public class UIpunto extends javax.swing.JFrame  {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
